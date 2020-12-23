@@ -58,22 +58,25 @@ const uint16_t macros[MRO_QUAN][MRO_LEN]{
   {0x00,0x00,0x00,0x00,0x00,0x00}
 };
 
-//end of abstraction
-
 const byte ROWS = 4; //four rows
 const byte COLS = 4; //four columns
+
+//Pins for which your keypad matrix will be created
+byte rowPins[ROWS] = {7, 8, 9, 10}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {5, 4, 3, 2}; //connect to the column pinouts of the keypad
+
+//end of abstraction
 
 /*
  * This map is how the matrix is defined via the hardware. This will need to be changed if your matrix differs from how mine was setup. 
  * The teensy multikey keypad example will help you figure out how yours is laid out
  */
-const uint16_t keyMap[4][4]{
+const uint16_t keyMap[COLS][ROWS]{
   {0,4,8,12},
   {1,5,9,13},
   {2,6,10,14},
   {3,7,11,15}
 };
-
 
 /**
  * IF CREATING A 4x4 Macropad, no other edits need to be made below.
@@ -91,8 +94,7 @@ char garbage[COLS][ROWS] = {
   {'8','9','A','B'},
   {'C','D','E','F'}
 };
-byte rowPins[ROWS] = {7, 8, 9, 10}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {5, 4, 3, 2}; //connect to the column pinouts of the keypad
+
 
 //initialize an instance of class NewKeypad
 Keypad kpd = Keypad( makeKeymap(garbage), colPins, rowPins, COLS, ROWS); 
